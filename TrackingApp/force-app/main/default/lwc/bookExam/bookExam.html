@@ -1,0 +1,47 @@
+<template>
+    <lightning-card title="Book Exam" icon-name="action:new_event">
+        <div class="slds-m-around_medium">
+            <lightning-combobox
+                name="exam"
+                label="Exam"
+                value={exam}
+                placeholder="Select an Exam"
+                options={examOptions}
+                onchange={handleExamChange}>
+            </lightning-combobox>
+
+            <lightning-combobox
+                name="venue"
+                label="Venue"
+                value={venue}
+                placeholder="Select a Venue"
+                options={venueOptions}
+                onchange={handleVenueChange}>
+            </lightning-combobox>
+
+            <lightning-input
+                type="datetime-local"
+                label="Exam Date and Time"
+                value={examDateTime}
+                onchange={handleDateChange}>
+            </lightning-input>
+
+            <template if:true={status}>
+                <p>Status: {status}</p>
+            </template>
+
+            <lightning-input
+                type="text"
+                label="Intern"
+                value={intern}
+                readonly>
+            </lightning-input>
+
+            <lightning-button
+                label="Book Exam"
+                variant="brand"
+                onclick={handleBookExam}>
+            </lightning-button>
+        </div>
+    </lightning-card>
+</template>
