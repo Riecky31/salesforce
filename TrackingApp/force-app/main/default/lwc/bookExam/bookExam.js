@@ -14,6 +14,7 @@ export default class BookExam extends LightningElement {
     @wire(getExamFields, { recordId: '$recordId' })
     wiredExamData({ data, error }) {
         if (data) {
+            console.log("Exam: ", data);
             // Populate combobox options
             this.examOptions = data.examOptions;
             this.venueOptions = data.venueOptions;
