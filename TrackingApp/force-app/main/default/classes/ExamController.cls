@@ -5,7 +5,9 @@ public with sharing class ExamController {
             // Fetch the Exam record
             Exam__c exam = [
                 SELECT Id, Name, Exam__c, Venue__c, Exam_Date__c, Exam_Status__c, Intern__r.Name, Results__c 
-                FROM Exam__c WHERE Id = :recordId LIMIT 1
+                FROM Exam__c 
+                WHERE Id = :recordId 
+                LIMIT 1
             ];
             
             // Get picklist values for Exam and Venue fields
@@ -13,12 +15,12 @@ public with sharing class ExamController {
             List<String> venuePicklist = getPicklistValues('Exam__c', 'Venue__c');
             
             // Prepare the response map
-            return new Map<String, Object>{
-                'examOptions' => examPicklist,
-                'venueOptions' => venuePicklist,
-                'status' => exam.Exam_Status__c,
-                'internName' => exam.Intern__r != null ? exam.Intern__r.Name : null
-            };
+            Map<String, Object> responseMap = new Map<String, Object>();
+            responseMap.put('examOptions', examPicklist);
+            responseMap.put('venueOptions', venuePicklist);
+            responseMap.put('status', exam.Exam_Status__c);
+            responseMap.put('internName', exam.Intern__r != null ? exam.Intern__r.Name : null);
+            return responseMap;
         } catch (Exception e) {
             // Handle unexpected errors
             throw new AuraHandledException('Error retrieving exam details: ' + e.getMessage());

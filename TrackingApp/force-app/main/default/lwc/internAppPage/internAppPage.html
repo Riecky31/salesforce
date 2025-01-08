@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Intern Tracker" icon-name="custom:custom63">
+      <div class="slds-m-around_medium">
+        <lightning-input label="Intern Name" onchange={handleNameChange}></lightning-input>
+        <lightning-input label="Intern Role" onchange={handleRoleChange}></lightning-input>
+        <lightning-button label="Add Intern" onclick={addIntern}></lightning-button>
+      </div>
+      <template if:true={interns.length}>
+        <ul>
+          <template for:each={interns} for:item="intern">
+            <li key={intern.id}>{intern.name} - {intern.role}</li>
+          </template>
+        </ul>
+      </template>
+    </lightning-card>
+  </template>
+  
