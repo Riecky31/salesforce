@@ -1,16 +1,17 @@
-public with sharing class certificateController {
-    @AuraEnabled
-    public static String createCertificate(String name, Date expirationDate, Datetime dateIssuedDateTime, Id internId) {
+public with sharing class CertificateController {
+    @AuraEnabled(cacheable=true)
+    public static List<Intern_certificates__c> getCertificates() {
+        // Check if the user has Read access to the object
+        if (!Schema.sObjectType.Intern_certificates__c.isAccessible()) {
+            throw new AuraHandledException('You do not have access to view certificates.');
+        }
+        
         try {
-            Intern_certificates__c certificate = new Intern_certificates__c();
-            certificate.Name = name;
-            certificate.Expiration_Date__c = expirationDate;
-            certificate.Date_issued__c = dateIssuedDateTime;
-            certificate.Intern__c = internId; // Add the lookup to User
-            insert certificate;
-            return 'Success';
+            // Query the Intern_certificates__c object
+            return [SELECT Id, Name, Date_issued__c, Intern__c FROM Intern_certificates__c];
         } catch (Exception e) {
-            throw new AuraHandledException('Error: ' + e.getMessage());
+            System.debug('Error retrieving certificates: ' + e.getMessage());
+            throw new AuraHandledException('Unable to retrieve certificates at this time.');
         }
     }
 }

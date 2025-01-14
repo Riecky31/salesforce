@@ -1,15 +1,15 @@
 <template>
     <!-- Display grouped data -->
     <template if:true={groupedData}>
-        <h1 class="heading">Exam History</h1>
+        <h1 class="heading">Interns and Their Exams</h1>
         <template for:each={groupedData} for:item="group">
             <div key={group.internName} class="intern-section">
                 <!-- Display intern name -->
-                <h2>{group.internName}</h2>
+                <h2><strong>{group.internName}</strong></h2>
                 <table class="exam-table">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th><strong>Name</strong></th>
                             <th>Score</th>
                             <th>Status</th>
                             <th>Date</th>
@@ -20,7 +20,7 @@
                     <tbody>
                         <template for:each={group.exams} for:item="exam">
                             <tr key={exam.Id} class="exam-row">
-                                <td>{exam.Name}</td>
+                                <td><strong>{exam.Name}</strong></td>
                                 <td>{exam.Score__c}</td>
                                 <td>{exam.Exam_Status__c}</td>
                                 <td>{exam.Exam_Date__c}</td>
