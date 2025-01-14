@@ -1,0 +1,42 @@
+<template>
+    <lightning-card title="Intern Certificate Form" icon-name="custom:custom14">
+        <div class="slds-p-horizontal_large">
+            <!-- Intern Search -->
+            <lightning-combobox 
+                name="internId"
+                label="Select Intern"
+                value={internId}
+                placeholder="Search for an intern"
+                options={internOptions}
+                onchange={handleChange}>
+            </lightning-combobox>
+            
+            <!-- Other Fields -->
+            <lightning-input 
+                label="Intern Certificate Name" 
+                name="name" 
+                value={certificateName} 
+                onchange={handleChange}>
+            </lightning-input>
+            <lightning-input 
+                label="Expiration Date " 
+                name="expirationDate" 
+                type="date" 
+                value={expirationDate} 
+                onchange={handleChange}>
+            </lightning-input>
+            <lightning-input 
+                label="Date Issued & Time" 
+                name="dateIssuedDateTime" 
+                type="datetime-local" 
+                value={dateIssuedDateTime} 
+                onchange={handleChange}>
+            </lightning-input>
+            <lightning-button 
+                label="Save" 
+                variant="brand" 
+                onclick={handleSave}>
+            </lightning-button>
+        </div>
+    </lightning-card>
+</template>
