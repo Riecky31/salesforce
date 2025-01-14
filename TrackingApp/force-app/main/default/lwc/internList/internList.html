@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Intern List">
+        <!-- Display intern data as a list instead of a table -->
+        <template if:true={hasInterns}>
+            <ul>
+                <template for:each={interns} for:item="intern">
+                    <li key={intern.Id}>
+                        <strong>{intern.Intern_Name__c}</strong> (ID: {intern.ID_Number__c})<br/>
+                        Last Name: {intern.Last_Name__c} <br/>
+                        Phone: {intern.Phone_Number__c} <br/>
+                        Training Program: {intern.Training_Program__r.Name} <br/>
+                        User Profile: {intern.User_Profile__r.Name} <br/>
+                    </li>
+                </template>
+            </ul>
+        </template>
+
+        <!-- Message when no interns are found -->
+        <template if:false={hasInterns}>
+            <p>No interns found for this user.</p>
+        </template>
+    </lightning-card>
+</template>

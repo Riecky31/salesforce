@@ -1,0 +1,43 @@
+<template>
+    <!-- Display grouped data -->
+    <template if:true={groupedData}>
+        <h1 class="heading">Exam History</h1>
+        <template for:each={groupedData} for:item="group">
+            <div key={group.internName} class="intern-section">
+                <!-- Display intern name -->
+                <h2>{group.internName}</h2>
+                <table class="exam-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Score</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Venue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={group.exams} for:item="exam">
+                            <tr key={exam.Id} class="exam-row">
+                                <td>{exam.Name}</td>
+                                <td>{exam.Score__c}</td>
+                                <td>{exam.Exam_Status__c}</td>
+                                <td>{exam.Exam_Date__c}</td>
+                                <td>{exam.Exam__c}</td>
+                                <td>{exam.Venue__c}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+                <!-- Add a double line separator -->
+                <hr class="double-line" />
+            </div>
+        </template>
+    </template>
+
+    <!-- Display error message -->
+    <template if:true={error}>
+        <p class="error-message">Error fetching data: {error.body.message}</p>
+    </template>
+</template>
