@@ -1,23 +1,35 @@
 <template>
     <!-- Display table if data is available -->
-    <template if:true={certificates}>
-        <h1 class="heading">Certificates</h1>
-        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
-            <thead>
-                <tr>
-                    <th scope="col"><div class="slds-truncate">Date Issued</div></th>
-                    <th scope="col"><div class="slds-truncate">Intern</div></th>
-                </tr>
-            </thead>
-            <tbody>
-                <template for:each={certificates} for:item="certificate">
-                    <tr key={certificate.Id}>
-                        <td><div class="slds-truncate">{certificate.Date_Issued__c}</div></td>
-                        <td><div class="slds-truncate">{certificate.Intern__c}</div></td>
-                    </tr>
-                </template>
-            </tbody>
-        </table>
+    <template if:true={groupedCertificates}>
+        <h1 class="heading slds-text-heading_medium slds-text-color_error">Certificates</h1>
+        
+        <template for:each={groupedCertificates} for:item="group">
+            <section key={group.internId} class="slds-m-around_medium">
+                <h2 class="slds-text-heading_small slds-text-color_error">{group.internName}</h2>
+                
+                <!-- Table for certificates -->
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead class="slds-text-heading_small slds-theme_shade">
+                        <tr>
+                            <th scope="col"><div class="slds-truncate">Certificate Name</div></th>
+                            <th scope="col"><div class="slds-truncate">Date Issued</div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={group.certificates} for:item="certificate">
+                            <tr key={certificate.Id} class="slds-hint-parent slds-text-align_center">
+                                <td>
+                                    <div class="slds-truncate">{certificate.Name}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate">{certificate.formattedDateissued}</div>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </section>
+        </template>
     </template>
 
     <!-- Display loading spinner while data is being fetched -->
@@ -31,6 +43,6 @@
 
     <!-- Display error message if there is an issue -->
     <template if:true={error}>
-        <p class="error-message">Error loading certificates: {error}</p>
+        <p class="error-message slds-text-color_error">Error loading certificates: {error}</p>
     </template>
 </template>

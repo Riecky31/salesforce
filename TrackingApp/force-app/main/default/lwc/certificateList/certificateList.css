@@ -1,0 +1,51 @@
+/* Custom styling for headings and tables */
+h1.heading {
+    color: #d32f2f; /* Red color */
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+h2.slds-text-heading_small {
+    color: #d32f2f; /* Red color */
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+/* Custom table styles */
+table.slds-table {
+    border: 1px solid #ddd; /* Light grey border */
+    border-radius: 8px;
+}
+
+table.slds-table th {
+    background-color: #f2f2f2; /* Light grey background for table headers */
+    color: #d32f2f; /* Red text for headers */
+    font-weight: bold;
+}
+
+table.slds-table tr:hover {
+    background-color: #ffe6e6; /* Light red highlight on row hover */
+}
+
+table.slds-table td {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+}
+
+table.slds-table .slds-truncate {
+    text-overflow: ellipsis;
+}
+
+/* Error message styling */
+.error-message {
+    color: #d32f2f; /* Red color for error message */
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* Spinner container styling */
+.slds-spinner_container {
+    text-align: center;
+    padding: 3rem 0;
+}
