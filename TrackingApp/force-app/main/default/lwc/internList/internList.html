@@ -1,23 +1,34 @@
 <template>
-    <lightning-card title="Intern List">
-        <!-- Display intern data as a list instead of a table -->
-        <template if:true={hasInterns}>
-            <ul>
-                <template for:each={interns} for:item="intern">
-                    <li key={intern.Id}>
-                        <strong>{intern.Intern_Name__c}</strong> (ID: {intern.ID_Number__c})<br/>
-                        Last Name: {intern.Last_Name__c} <br/>
-                        Phone: {intern.Phone_Number__c} <br/>
-                        Training Program: {intern.Training_Program__r.Name} <br/>
-                        User Profile: {intern.User_Profile__r.Name} <br/>
-                    </li>
-                </template>
-            </ul>
+    <div class="slds-box">
+        <template if:true={internList}>
+            <h3 class="slds-text-heading_medium">Intern List</h3>
+            <!-- Table to display the list of interns -->
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_striped">
+                <thead>
+                    <tr>
+                        <th class="slds-text-title_bold">Intern Name</th>
+                       <!--  <th class="slds-text-title_bold">Training Program</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={internList} for:item="intern">
+                        <tr key={intern.Id}>
+                            <td class="slds-text-body_regular">
+                                <a href="javascript:void(0);" class="intern-name">{intern.Intern__r.Name}</a>
+                            </td>
+                           <!--  <td class="slds-text-body_regular">{intern.Training_Program__c}</td> -->
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+        
+        <template if:true={error}>
+            <p class="error">An error occurred: {error.body.message}</p>
         </template>
 
-        <!-- Message when no interns are found -->
-        <template if:false={hasInterns}>
-            <p>No interns found for this user.</p>
+        <template if:false={internList}>
+            <p class="no-interns-message">No interns found for this training program.</p>
         </template>
-    </lightning-card>
+    </div>
 </template>

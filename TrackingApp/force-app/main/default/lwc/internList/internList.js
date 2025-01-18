@@ -1,27 +1,21 @@
-import { LightningElement, track, wire } from 'lwc';
-import getInternsByUser from '@salesforce/apex/InternController.getInternsByUser';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import USER_ID from '@salesforce/user/Id';
+import { LightningElement, api, wire } from 'lwc';
+import getInternsByTrainingProgram from '@salesforce/apex/InternListController.getInternsByTrainingProgram';
 
 export default class InternList extends LightningElement {
-    @track interns = [];
-    userId = USER_ID;
+    @api recordId; // This will hold the Training Program record ID
+    internList = [];
+    error;
 
-    @wire(getInternsByUser, { userId: '$userId' })
-    wiredInterns({ error, data }) {
+    // Wire the Apex method to get related Intern records
+    @wire(getInternsByTrainingProgram, { trainingProgramId: '$recordId' })
+    wiredInternList({ error, data }) {
         if (data) {
-            this.interns = data;
+            this.internList = data;
+            this.error = undefined;
         } else if (error) {
-            this.showToast('Error', 'Failed to load interns', 'error');
+            this.error = error;
+            this.internList = [];
+            console.error(error);
         }
-    }
-
-    // Getter to check if interns array has data
-    get hasInterns() {
-        return Array.isArray(this.interns) && this.interns.length > 0;
-    }
-
-    showToast(title, message, variant) {
-        this.dispatchEvent(new ShowToastEvent({ title, message, variant }));
     }
 }

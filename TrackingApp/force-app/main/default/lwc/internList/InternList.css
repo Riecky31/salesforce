@@ -1,0 +1,75 @@
+/* Container box around the component */
+.slds-box {
+    padding: 1rem;
+    border: 1px solid #d8dde6;
+    background-color: #f4f6f9;
+    border-radius: 0.25rem;
+}
+
+/* Heading Style */
+.slds-text-heading_medium {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #1d3557; /* Dark blue text */
+}
+
+/* Error message style */
+.error {
+    color: #d32f2f;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+/* Table Styling */
+table.slds-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    border: 1px solid #d8dde6;
+}
+
+/* Table header */
+th.slds-text-title_bold {
+    background-color: #0070d2; /* Blue background for the header */
+    color: white;
+    padding: 0.75rem;
+    text-align: left;
+    font-size: 1rem;
+    border: 1px solid #d8dde6;
+}
+
+/* Table data cells */
+td.slds-text-body_regular {
+    padding: 0.75rem;
+    border: 1px solid #d8dde6;
+    background-color: #ffffff;
+}
+
+/* Hover effect for table rows */
+tr:hover {
+    background-color: #f3f6fb;
+}
+
+/* Intern name link style */
+td .intern-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #0070d2; /* Blue color */
+    text-decoration: none;
+}
+
+/* Hover effect on intern name link */
+td .intern-name:hover {
+    text-decoration: underline;
+}
+
+/* Message when no interns are found */
+.no-interns-message {
+    font-size: 1rem;
+    color: #888;
+    padding: 1rem;
+    background-color: #f4f6f9;
+    border-radius: 0.25rem;
+    text-align: center;
+    border: 1px solid #d8dde6; /* Light border around the "No interns" message */
+}

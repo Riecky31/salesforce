@@ -1,0 +1,44 @@
+<template>
+    <lightning-card title="Create Training Program" icon-name="action:new" class="custom-title">
+        <lightning-record-edit-form 
+            object-api-name="Training_Program__c" 
+            onsuccess={handleSuccess} 
+            onerror={handleError}>
+            <lightning-messages></lightning-messages>
+
+            <!-- Training Program Name -->
+            <lightning-input-field field-name="Name" class="blue-border"></lightning-input-field>
+
+            <!-- Cybersecurity Certificates (Multi-Select Picklist) -->
+            <lightning-input-field field-name="Cybersecurity_certificates__c" class="red-border"></lightning-input-field>
+
+            <!-- Salesforce Certificate (Multi-Select Picklist) -->
+            <lightning-input-field field-name="Salesforce_certificate__c" class="blue-border"></lightning-input-field>
+
+            <!-- Start Date -->
+            <lightning-input-field field-name="start_date__c"></lightning-input-field>
+
+            <!-- End Date -->
+            <lightning-input-field field-name="End_date__c"></lightning-input-field>
+
+            <!-- Duration (Formula Field) -->
+            <lightning-input-field field-name="Duration__c" readonly></lightning-input-field>
+
+            <!-- Stages (Picklist) -->
+            <lightning-input-field field-name="Stages__c"></lightning-input-field>
+
+            <!-- Intern (Lookup to User) -->
+            <lightning-input-field field-name="Intern__c"></lightning-input-field>
+
+            <!-- Program (Master-Detail Relationship) -->
+            <lightning-input-field field-name="program__c"></lightning-input-field>
+
+            <!-- Status (Formula Field) -->
+            <lightning-input-field field-name="Status__c" readonly></lightning-input-field>
+
+            <div class="slds-m-top_medium">
+                <lightning-button class="custom-button" type="submit" label="Create"></lightning-button>
+            </div>
+        </lightning-record-edit-form>
+    </lightning-card>
+</template>

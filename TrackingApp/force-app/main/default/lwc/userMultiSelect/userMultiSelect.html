@@ -1,0 +1,11 @@
+<template>
+    <lightning-combobox
+        name="userList"
+        label="Select Interns"
+        placeholder="Select Users"
+        multiple
+        options={userOptions}
+        value={selectedUserIds}
+        onchange={handleUserChange}>
+    </lightning-combobox>
+</template>
