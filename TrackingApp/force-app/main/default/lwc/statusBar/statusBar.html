@@ -1,0 +1,34 @@
+<template>
+    <div class="container">
+        <!-- Heading for required certificates -->
+        <h2 class="heading">Required Certificates</h2>
+
+        <!-- Progress Bar Panel -->
+        <div class="progress-bar-container">
+            <div class="progress-bar">
+                <!-- The progress will be dynamically set here -->
+                <div class="progress-fill" style="width: {progress}%">
+                    <span class="progress-text">{progress}%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificate List with Checkboxes -->
+        <div class="certificate-list">
+            <template for:each={certificates} for:item="certificate" for:index="index">
+                <div key={certificate.id} class="certificate-item">
+                    <input
+                        type="checkbox"
+                        data-index={index}
+                        checked={certificate.done}
+                        onchange={handleToggle}
+                    />
+                    <label>{certificate.name}</label>
+                </div>
+            </template>
+        </div>
+
+        <!-- Save Progress Button -->
+        <lightning-button label="Save Progress" onclick={saveProgress} class="save-button"></lightning-button>
+    </div>
+</template>

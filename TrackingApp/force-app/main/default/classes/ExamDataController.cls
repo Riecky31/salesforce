@@ -6,7 +6,7 @@ public with sharing class ExamDataController {
         
         // Fetch exam records
         List<Exam__c> exams = [
-            SELECT Id, Name, Score__c, Exam_Status__c, Exam_Date__c, Exam__c, Venue__c, Intern__c, Intern__r.Name
+            SELECT Id, Name, Score__c, Exam_Status__c, Exam_Date__c, Exam__c, Venue__c, Results__c, Intern__c, Intern__r.Name
             FROM Exam__c
             ORDER BY Intern__r.Name, Exam_Date__c
         ];

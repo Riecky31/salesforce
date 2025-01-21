@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Interns and Training Programs">
+        <template if:true={groupedInterns}>
+            <template for:each={groupedInterns} for:item="group">
+                <section key={group.trainingProgram} class="group-section">
+                    <h3 class="group-title">{group.trainingProgram}</h3> <!-- Display the Training Program name -->
+                    <lightning-datatable
+                        key-field="Id"
+                        data={group.interns}
+                        columns={columns}
+                        editable
+                        class="intern-datatable">
+                    </lightning-datatable>
+                </section>
+            </template>
+        </template>
+        <template if:false={groupedInterns}>
+            <p>Loading intern list...</p>
+        </template>
+    </lightning-card>
+</template>

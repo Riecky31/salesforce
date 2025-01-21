@@ -1,0 +1,66 @@
+/* Ensure we target the .group-title within the lightning-card */
+lightning-card .group-title {
+    font-size: 1.25rem;
+    font-weight: bold; /* Make the Training Program name bold */
+    color: #006f91;
+    margin-bottom: 10px;
+    text-align: center;
+    position: relative;
+}
+
+/* Add asterisks before and after the Training Program name */
+lightning-card .group-title::before,
+lightning-card .group-title::after {
+    content: '*** '; /* Asterisks with space */
+    display: block;
+    font-size: 1.5rem;
+    color: #006f91;
+    margin: 10px 0; /* Add space above and below the asterisks */
+}
+
+lightning-card .group-title::before {
+    margin-bottom: 8px; /* Space before the Training Program name */
+}
+
+lightning-card .group-title::after {
+    margin-top: 8px; /* Space after the Training Program name */
+}
+
+/* Styling the section that contains each group */
+.group-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling the lightning-datatable */
+.intern-datatable {
+    margin-top: 10px;
+}
+
+/* Adding custom table styles */
+.slds-table {
+    border: 1px solid #d8dde6;
+    border-radius: 6px;
+}
+
+.slds-table th {
+    background-color: #f3f4f6;
+    color: #006f91;
+}
+
+.slds-table td {
+    padding: 12px 15px;
+}
+
+/* Adding hover effect to rows */
+.slds-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Adding some spacing around the card */
+lightning-card {
+    padding: 20px;
+}
