@@ -42,7 +42,9 @@ export default class StatusBar extends LightningElement {
     calculateProgress() {
         const totalCertificates = this.certificates.length;
         const completedCertificates = this.certificates.filter(cert => cert.done).length;
-        this.progress = (completedCertificates / totalCertificates) * 100;
+        this.progress = totalCertificates > 0 
+            ? Math.round((completedCertificates / totalCertificates) * 100) 
+            : 0;
     }
 
     // Save the progress
