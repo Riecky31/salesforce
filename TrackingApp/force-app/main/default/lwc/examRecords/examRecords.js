@@ -1,18 +1,26 @@
-import { LightningElement, wire } from 'lwc';
-import getExamRecordsGroupedByIntern from '@salesforce/apex/ExamDataController.getExamRecordsGroupedByIntern';
+import { LightningElement, api, wire, track } from "lwc";
+import getGroupedExamsByRecord from "@salesforce/apex/ExamDataController.getGroupedExamsByRecord";
 
 export default class ExamRecords extends LightningElement {
-    groupedData = []; 
-    error; 
+    @api recordId;  
+    @track groupedExams = [];
+    @track error;
 
-    @wire(getExamRecordsGroupedByIntern)
-    wiredExamData({ error, data }) {
+    // Fetch Exams related to the given Exam Record ID
+    @wire(getGroupedExamsByRecord, { recordId: "$recordId" })
+    wiredExams({ error, data }) {
         if (data) {
-            this.groupedData = data;
+            this.groupedExams = [
+                {
+                    internId: data[0]?.Intern__r?.Id || "Unknown",
+                    internName: data[0]?.Intern__r?.Name || "Unknown Intern",
+                    exams: data
+                }
+            ];
             this.error = undefined;
         } else if (error) {
             this.error = error;
-            this.groupedData = [];
+            this.groupedExams = [];
         }
     }
 }

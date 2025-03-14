@@ -1,0 +1,37 @@
+<template>
+    <lightning-card title="📊 Intern Dashboard">
+        <div class="slds-p-around_medium">
+            <div class="slds-grid slds-wrap slds-gutters">
+                <template lwc:if={hasInternsData}>
+                    <div class="slds-size_1-of-2">
+                        <lightning-tile label="Total Interns" class="metric-tile">
+                            <p class="metric-value">{totalInterns}</p>
+                        </lightning-tile>
+                    </div>
+                    <div class="slds-size_1-of-2">
+                        <lightning-tile label="Active Interns" class="metric-tile">
+                            <p class="metric-value">{activeInterns}</p>
+                        </lightning-tile>
+                    </div>
+                    <div class="slds-size_1-of-2">
+                        <lightning-tile label="Consultant Interns" class="metric-tile">
+                            <p class="metric-value">{consultantInterns}</p>
+                        </lightning-tile>
+                    </div>
+                    <div class="slds-size_1-of-2">
+                        <lightning-tile label="Total Certificates" class="metric-tile">
+                            <p class="metric-value">{totalCertificates}</p>
+                        </lightning-tile>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Chart Section -->
+            <div style="position: relative; height: 300px; width: 100%;" class="slds-m-top_large">
+                <canvas lwc:if={hasInternsData} class="internChart"></canvas>
+            </div>
+                🚨 No data available.
+            </p>
+        </div>
+    </lightning-card>
+</template>

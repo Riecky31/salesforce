@@ -1,45 +1,43 @@
 <template>
-    <!-- Display grouped data -->
-    <template if:true={groupedData}>
-        <h1 class="heading"> Exams History</h1>
-        <template for:each={groupedData} for:item="group">
-            <div key={group.internName} class="intern-section">
-                <!-- Display intern name -->
-                <h2><strong>{group.internName}</strong></h2>
-                <table class="exam-table">
-                    <thead>
-                        <tr>
-                            <th><strong>Name</strong></th>
-                            <th>Score</th>
-                            <th>Status</th>
-                            <th>Date</th>
-                            <th>Type</th>
-                            <th>Venue</th>
-                            <th>Results</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <template for:each={group.exams} for:item="exam">
-                            <tr key={exam.Id} class="exam-row">
-                                <td><strong>{exam.Name}</strong></td>
-                                <td>{exam.Score__c}</td>
-                                <td>{exam.Exam_Status__c}</td>
-                                <td>{exam.Exam_Date__c}</td>
-                                <td>{exam.Exam__c}</td>
-                                <td>{exam.Venue__c}</td>
-                                <td>{exam.Results__c}</td>
-                            </tr>
-                        </template>
-                    </tbody>
-                </table>
-                <!-- Add a double line separator -->
-                <hr class="double-line" />
+    <lightning-card title="Exam Details" icon-name="custom:custom19">
+        <template if:true={groupedExams}>
+            <template for:each={groupedExams} for:item="group">
+                <lightning-card key={group.internId} title={group.internName}>
+                    <div class="slds-m-around_medium">
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <thead>
+                                <tr>
+                                    <th>Exam Name</th>
+                                    <th>Score</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Venue</th>
+                                    <th>Results</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={group.exams} for:item="exam">
+                                    <tr key={exam.Id}>
+                                        <td>{exam.Name}</td>
+                                        <td>{exam.Score__c}%</td>
+                                        <td>{exam.Exam_Status__c}</td>
+                                        <td>{exam.Exam_Date__c}</td>
+                                        <td>{exam.Venue__c}</td>
+                                        <td>{exam.Results__c}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </lightning-card>
+            </template>
+        </template>
+
+        <!-- Error Handling -->
+        <template if:true={error}>
+            <div class="slds-text-color_error slds-m-around_medium">
+                {error.body.message}
             </div>
         </template>
-    </template>
-
-    <!-- Display error message -->
-    <template if:true={error}>
-        <p class="error-message">Error fetching data: {error.body.message}</p>
-    </template>
+    </lightning-card>
 </template>
